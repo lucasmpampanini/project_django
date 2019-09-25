@@ -1,0 +1,24 @@
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="btn btn-light" href="{% url 'home' %}"><b>Home</b></a>
+  </li><br>
+  <li class="nav-item">
+    <a class="btn btn-light" href="{% url 'xiaomi' %}">Xiaomi</a>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-light" href="#">Huawei</a>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-light" href="#">Doogee</a>
+  </li>
+</ul>
+
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+     <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+       <form class="form-inline  navbar-center" action="{% url 'search_results' %}" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui seu celular" aria-label="Search" name="q">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Prucurar</button>
+      </form>
+      </div>
+</nav>

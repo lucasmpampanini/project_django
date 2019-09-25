@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Home site</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+{% block content %}
+
+
+<div class="container">
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner d-none d-md-block">
+    <div class="carousel-item active">
+      <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+
+      <div class="container">
+      <div class="row justify-content-md-center">
+
+      <div class="card" style="width: 18rem;">
+  <img src="{{cell.0.url_img_gb}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+      <div class="card" style="width: 18rem;">
+  <img src="{{cell.1.url_img_gb}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+      <div class="card" style="width: 18rem;">
+  <img src="{{cell.2.url_img_gb}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+      </div>
+      </div>
+
+    </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <img src="https://c.dx.com/collection/banner/201909/20190918/Ulefone_T2_730x280_en_1.jpg" class="d-block w-100" alt="...">
+    </div>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <img src="https://c.dx.com/collection/banner/201909/20190917/Computer_&_Office_730x280_en.jpg" class="d-block w-100" alt="...">
+    </div>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+ {% include "navbar.html" %}
+
+
+<div class="row justify-content-md-center">
+
+  {% for cell1 in cell %}
+  <div class="col-sm-auto">
+  <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <img src="{{ cell1.url_img_gb }}" class="card-img " alt="...">
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ cell1.titlegb }}</h5>
+    <p class="card-text"><h4>Melhor Preço<br>{{ cell1.best_price }} <a href="{{ cell1.best_url }}" class="btn btn-dark">{{ cell1.best_name }} </a></h4></p>
+  </div>
+  <ul class="list-group list-group-flush text-center">
+    {% if not cell1.pricegb == 0 or 0.00 %}
+      <li class="list-group-item">{{cell1.pricegb}} <a class="btn btn-light" href="{{cell1.urlgb}}"> <i class="icon-tags"></i>{{ cell1.namegb }}</a></li>
+    {% endif %}
+    {% if not cell1.pricedx == 0 or 0.00 %}
+    <li class="list-group-item">{{cell1.pricedx}} <a class="btn btn-light" href="{{cell1.urldx}}">{{cell1.namedx}}</a></li>
+    {% endif %}
+    {% if not cell1.pricein == 0 or 0.00 %}
+    <li class="list-group-item">{{cell1.pricein}} <a class="btn btn-light" href="{{cell1.urlin}}">{{cell1.namein}}</a></li>
+    {% endif %}
+    {% if not cell1.pricebg == 0 or 0.00 %}
+      <li class="list-group-item">{{cell1.pricebg}} <a class="btn btn-light" href="{{cell1.urlbg}}">{{cell1.namebg}}</a></li>
+    {% endif %}
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Veja mais detalhes</a>
+  </div>
+</div>
+</div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+</body>
+</html>
