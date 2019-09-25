@@ -26,7 +26,7 @@ SECRET_KEY = 'ug9v94&y4%hg&z(u=jj0qbjg7#oq)*hx)k3#910(rc3*!ra319'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['projectdjangoscrapy.herokuapp.com/']
+ALLOWED_HOSTS = ['lucaspampanini.pythonanywhere.com']
 
 
 # Application definition
