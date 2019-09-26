@@ -98,6 +98,6 @@ import sys
 import django
 
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".."))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'project_django.project_django.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'project_django.settings'
 
 django.setup()
