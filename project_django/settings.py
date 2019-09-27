@@ -26,8 +26,8 @@ SECRET_KEY = 'ug9v94&y4%hg&z(u=jj0qbjg7#oq)*hx)k3#910(rc3*!ra319'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lucaspampanini.pythonanywhere.com']
-
+#ALLOWED_HOSTS = ['lucaspampanini.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -122,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = "/home/myusername/myproject/static"
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
