@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
 <head>
+    {% load static %}
+
     <meta charset="UTF-8">
-    <title>Home site</title>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparativo de lojas chinesas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'icon/stylesheet.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'icon/stylesheet.css' %}">
+    <style type="text/css">
+        .iconworks:before
+	               {
+		content: attr(data-icon);
+		font-family:icon-worksregular;
+	                }
+    </style>
 </head>
 <body>
-
-{% block content %}
-
-<div class="container">
-
-
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner d-none d-md-block">
-    <div class="carousel-item active">
-      <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-      <img src="https://c.dx.com/collection/banner/201909/20190918/Ulefone_T2_730x280_en_1.jpg" class="d-block w-100" alt="...">
-    </div>
-        </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-      <img src="https://c.dx.com/collection/banner/201909/20190917/Computer_&_Office_730x280_en.jpg" class="d-block w-100" alt="...">
-    </div>
-        </div>
-    </div>
-  </div>
-
-
-</div>
-
-
+    {% load static %}
+  {% block content %}
  {% include "navbar.html" %}
 
+<div class="card text-white">
+  <img src="{% static 'img/xiaomi.jpg' %}" class="card-img" alt="...">
+  <div class="card-img-overlay h-100 d-flex flex-column justify-content-center">
+    <div class="container font-alt">
+        <h1 class="card-title text-center d-none d-sm-block "><span class="iconworks" data-icon="&#92;"></span>Comparativo de Sites Chineses</h1>
+      <form class="form-inline" action="{% url 'search_results' %}" method="get">
+      <input class="form-control col-sm col-md col-lg" type="search" placeholder="Pesquise aqui seu celular" aria-label="Search" name="q">
+        <button class="btn btn-outline-light" type="submit">
+            <span class="iconworks" data-icon="&#75;"></span>
+        </button>
+      </form>
+  </div>
+    </div>
+</div>
+
+<div class="container font-alt">
 
 <div class="row justify-content-md-center">
+
 
   {% for cell1 in cell %}
   <div class="col-sm-auto">
@@ -54,7 +53,7 @@
   <img src="{{ cell1.url_img_gb }}" class="card-img " alt="...">
   <div class="card-body text-center">
     <h5 class="card-title">{{ cell1.titlegb }}</h5>
-    <p class="card-text"><h4>Melhor Preço<br>{{ cell1.best_price }} <a href="{{ cell1.best_url }}" class="btn btn-dark">{{ cell1.best_name }} </a></h4></p>
+    <p class="card-text"><h4>Melhor Preço<br>{{ cell1.best_price }} <a href="{{ cell1.best_url }}" ><button class="btn btn-danger"> {{ cell1.best_name }} </button></a></h4></p>
   </div>
   <ul class="list-group list-group-flush text-center">
     {% if not cell1.pricegb == 0 or 0.00 %}

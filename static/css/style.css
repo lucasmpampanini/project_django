@@ -1,0 +1,36 @@
+.font-alt{
+   font-family:Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+.btn-outline-light-nav {
+  color: #BEBEBE;
+  border-color: #BEBEBE;
+  font-size: 26px;
+}
+
+.btn-outline-light-nav:hover {
+  color: #FF4040;
+  border-color: #FF4040;
+
+}
+
+.btn-outline-light-nav:focus, .btn-outline-light-nav.focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}
+
+.btn-outline-light-nav.disabled, .btn-outline-light-nav:disabled {
+  color: #f8f9fa;
+  background-color: transparent;
+}
+
+.btn-outline-light-nav:not(:disabled):not(.disabled):active, .btn-outline-light-nav:not(:disabled):not(.disabled).active,
+.show > .btn-outline-light.dropdown-toggle {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.btn-outline-light-nav:not(:disabled):not(.disabled):active:focus, .btn-outline-light-nav:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-light.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}

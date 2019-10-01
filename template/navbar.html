@@ -1,24 +1,80 @@
 
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="btn btn-light" href="{% url 'home' %}"><b>Home</b></a>
-  </li><br>
-  <li class="nav-item">
-    <a class="btn btn-light" href="{% url 'xiaomi' %}">Xiaomi</a>
-  </li>
-  <li class="nav-item">
-    <a class="btn btn-light" href="#">Huawei</a>
-  </li>
-  <li class="nav-item">
-    <a class="btn btn-light" href="#">Doogee</a>
-  </li>
-</ul>
-
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-     <div class="mx-auto my-2 order-0 order-md-1 position-relative">
-       <form class="form-inline  navbar-center" action="{% url 'search_results' %}" method="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui seu celular" aria-label="Search" name="q">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Prucurar</button>
+<!--
+<nav class="navbar navbar-expand-lg sticky-top ">
+         <div class="mx-auto  position-relative form-group">
+       <form action="{% url 'search_results' %}" method="get">
+      <input class="form-control col-lg" type="search" placeholder="Pesquise aqui seu celular" aria-label="Search" name="q">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Prucurar</button>
       </form>
       </div>
+</nav>
+-->
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'icon/stylesheet.css' %}">
+    <style type="text/css">
+        .iconworks:before
+	               {
+		content: attr(data-icon);
+		font-family:icon-worksregular;
+	                }
+    </style>
+
+
+</head>
+
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light font-alt">
+  <a class="navbar-brand" href="#"><span class="iconworks" data-icon="&#92;"></span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Xiaomi" href="#"><img src="{% static 'svg/xiaomilogo.svg' %}" width="30" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Huawei" href="#"><img src="{% static 'svg/huaweilogo.svg' %}" width="30" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Doogee" href="#"><img src="{% static 'img/doogeelogo.png' %}" width="70" height=auto></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="OnePlus" href="#"><img src="{% static 'img/onepluslogo.png' %}" width="80" height=auto></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Bluboo" href="#"><img src="{% static 'img/bluboologo.png' %}" width="80" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Oukitel" href="#"><img src="{% static 'img/oukitellogo.png' %}" width="80" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Lenovo" href="#"><img src="{% static 'img/lenovologo.png' %}" width="70" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Meizu" href="#"><img src="{% static 'img/meizulogo.png' %}" width="70" height=auto></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Cubot" href="#"><img src="{% static 'img/cubotlogo.png' %}" width="70" height=auto></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="iconworks" data-icon="&#94;"></span> Outras Marcas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Leagoo" href="#"><img src="{% static 'img/leagoologo.png' %}" width="80" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Asus" href="#"><img src="{% static 'img/asuslogo.png' %}" width="80" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Elephone" href="#"><img src="{% static 'img/elephonelogo.png' %}" width="55" height=auto></a>
+
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline">
+      <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+      <button class="btn btn-outline-light-nav" type="submit">
+            <span class="iconworks" data-icon="&#75;"></span>
+      </button>
+    </form>
+  </div>
 </nav>
