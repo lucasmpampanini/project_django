@@ -14,7 +14,7 @@ def home_view(request, *args, **kwargs):
     return render(request, "home.html", context)
 
 def xiaomi_view(request, *args, **kwargs):
-    cell1 = Xiaomi.objects.all()
+    cell1 = Xiaomi.objects.filter(titlegb__contains="xiaomi")
 
     context = {'cell': cell1,
                }
@@ -25,12 +25,12 @@ class SearchResultsView(ListView):
     model = Xiaomi
     template_name = 'search_results.html'
 
-def celulares_view(request, *args, **kwargs):
-    cell1 = Xiaomi.objects.all()
+def huawei_view(request, *args, **kwargs):
+    cell1 = Xiaomi.objects.filter(titlegb__contains="huawei")
 
     context = {'cell': cell1,
                }
-    return render(request, "celulares.html", context)
+    return render(request, "huawei.html", context)
 
 def cell_price_min(request):
     cell1 = Xiaomi.objects.all()

@@ -1,6 +1,28 @@
 import scrapy
 from project_scrapy.items import Xiaomi_gb_listItem, Xiaomi_bg_listItem
 
+class Huawei_GbSpider(scrapy.Spider):
+    name = "huawei_gb"
+    allowed_domains = ["gearbest.com"]
+    start_urls = ['https://br.gearbest.com/celulares-c_11293/?brand=huawei&page_size=120']
+
+    def parse(self, response):
+        title_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a/@title').extract()
+        url_img_list = response.xpath('//ul[@class="clearfix js_seachResultList"]//li//a//img/@data-lazy').extract()
+        price_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p/@data-currency').extract()
+        url_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a[@class="gbGoodsItem_title   "]//@href').extract()
+        i = 0
+
+        for url in url_list:
+            item = Xiaomi_gb_listItem()
+            item['titlegb'] = title_list[i]
+            item['url_img_gb'] = url_img_list[i]
+            item['namegb'] = response.xpath('//img[@class="footerLogo_img"]/@alt').extract()[0]
+            item['pricegb'] = format_float(price_list[i])
+            item['urlgb'] = url
+            if i != len(title_list):
+                i = i + 1
+            yield item
 
 class Xiaomi_GbSpider(scrapy.Spider):
     name = "xiaomi_gb"
