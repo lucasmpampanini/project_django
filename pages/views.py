@@ -34,6 +34,13 @@ def huawei_view(request, *args, **kwargs):
                }
     return render(request, "huawei.html", context)
 
+def sugestao_6ram(request, *args, **kwargs):
+    cell1 = Xiaomi.objects.filter(titlegb__contains="6GB RAM")
+
+    context = {'cell': cell1,
+               }
+    return render(request, "sugestao_6ram.html", context)
+
 def xiaomi_196(request, pk):
   try:
     xiaomi = Xiaomi.objects.get(id=pk)
