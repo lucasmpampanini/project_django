@@ -9,30 +9,9 @@
       </div>
 </nav>
 -->
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
-<head>
-    {% load static %}
 
-    <meta charset="UTF-8">
-    <title>Comparativo de lojas chinesas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'icon/stylesheet.css' %}">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'icon/stylesheet.css' %}">
-    <style type="text/css">
-        .iconworks:before
-	               {
-		content: attr(data-icon);
-		font-family:icon-worksregular;
-	                }
-    </style>
-</head>
 
+{% load static %}
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light font-alt">
   <a class="navbar-brand" href="{% url 'home' %}"><span class="iconworks" data-icon="&#92;"></span>Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

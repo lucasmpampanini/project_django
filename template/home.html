@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
-<head>
-    {% load static %}
-
-    <meta charset="UTF-8">
-    <title>Comparativo de lojas chinesas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'icon/stylesheet.css' %}">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'icon/stylesheet.css' %}">
-    <style type="text/css">
-        .iconworks:before
-	               {
-		content: attr(data-icon);
-		font-family:icon-worksregular;
-	                }
-    </style>
-</head>
-<body>
-    {% load static %}
+{% extends "base.html" %}
+{% block title %}Comparativo de Lojas Chinesas{% endblock %}
   {% block content %}
+     {% load static %}
+    {% load humanize %}
  {% include "navbar.html" %}
 
 <div class="card text-white">
-  <img src="{% static 'img/xiaomi.jpg' %}" class="card-img" alt="...">
+  <img src="{% static 'img/xiaomi.jpg' %}" class="card-img-home" alt="...">
   <div class="card-img-overlay h-100 d-flex flex-column justify-content-center">
     <div class="container font-alt">
         <h1 class="card-title text-center d-none d-sm-block "><span class="iconworks" data-icon="&#92;"></span>Comparativo de Sites Chineses</h1>
@@ -41,7 +19,6 @@
   </div>
     </div>
 </div>
-
 <div class="container font-alt">
 
 <div class="row justify-content-md-center">
@@ -50,32 +27,30 @@
   {% for cell1 in cell %}
   <div class="col-sm-auto">
   <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
-  <img src="{{ cell1.url_img_gb }}" class="card-img " alt="...">
+  <img src="{{ cell1.url_img_gb }}" class="card-img rounded mx-auto d-block" alt="...">
   <div class="card-body text-center">
     <h5 class="card-title">{{ cell1.titlegb }}</h5>
-    <p class="card-text"><h4>Melhor Preço<br>{{ cell1.best_price }} <a href="{{ cell1.best_url }}" ><button class="btn btn-danger"> {{ cell1.best_name }} </button></a></h4></p>
+    <p class="card-text"><h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5></p>
   </div>
   <ul class="list-group list-group-flush text-center">
     {% if not cell1.pricegb == 0 or 0.00 %}
-      <li class="list-group-item">{{cell1.pricegb}} <a class="btn btn-light" href="{{cell1.urlgb}}"> <i class="icon-tags"></i>{{ cell1.namegb }}</a></li>
+      <li class="list-group-item">$ {{cell1.pricegb}} <b>|</b> R$ {{ cell1.pricegb_brl }} <a class="btn btn-light" href="{{cell1.urlgb}}"><img src="{{ cell1.namegb }}" width="100" height=auto><span class="iconworks" data-icon="&#48;"></span></a></li>
     {% endif %}
     {% if not cell1.pricedx == 0 or 0.00 %}
-    <li class="list-group-item">{{cell1.pricedx}} <a class="btn btn-light" href="{{cell1.urldx}}">{{cell1.namedx}}</a></li>
+    <li class="list-group-item">$ {{cell1.pricedx}} <b>|</b> R$ {{ cell1.pricedx_brl }} <a class="btn btn-light" href="{{cell1.urldx}}"><img src="{{ cell1.namedx }}" width="80" height=auto><span class="iconworks" data-icon="&#48;"></span></a></li>
     {% endif %}
     {% if not cell1.pricein == 0 or 0.00 %}
-    <li class="list-group-item">{{cell1.pricein}} <a class="btn btn-light" href="{{cell1.urlin}}">{{cell1.namein}}</a></li>
+    <li class="list-group-item">$ {{cell1.pricein}} <b>|</b> R$ {{ cell1.pricein_brl }} <a class="btn btn-light" href="{{cell1.urlin}}"><img src="{{ cell1.namein }}" width="90" height=auto><span class="iconworks" data-icon="&#48;"></span></a></li>
     {% endif %}
     {% if not cell1.pricebg == 0 or 0.00 %}
-      <li class="list-group-item">{{cell1.pricebg}} <a class="btn btn-light" href="{{cell1.urlbg}}">{{cell1.namebg}}</a></li>
+      <li class="list-group-item">$ {{cell1.pricebg}} <b>|</b> R$ {{ cell1.pricebg_brl }} <a class="btn btn-light" href="{{cell1.urlbg}}"><img src="{{ cell1.namebg }}" width="70" height=auto><span class="iconworks" data-icon="&#48;"></span></a></li>
     {% endif %}
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Veja mais detalhes</a>
+    <a href="{% url 'xiaomi_detail' cell1.id %}" class="card-link">Veja mais detalhes</a>
   </div>
 </div>
 </div>
   {% endfor %}
 </div>
 {% endblock %}
-</body>
-</html>
