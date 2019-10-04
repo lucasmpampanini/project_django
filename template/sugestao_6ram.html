@@ -1,132 +1,100 @@
-<!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'icon/stylesheet.css' %}">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'icon/stylesheet.css' %}">
-    <style type="text/css">
-        .iconworks:before
-	               {
-		content: attr(data-icon);
-		font-family:icon-worksregular;
-	                }
-    </style>
-</head>
-<body>
+
 {% block content %}
 {% load static %}
+<h4 class="font-alt"> Sugestões pra você...</h4>
+<div id="carouselExampleIndicators" class="carousel slide d-none d-sm-block" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner font-alt">
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-  <div class="carousel-inner">
     <div class="carousel-item active">
+      <div class="d-flex justify-content-center" >
+          {% for cell1 in cell|slice:":3" %}
+          <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                  <div class="col-md-auto text-center">
+                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="{{cell1.url_img_gb}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <small>
+                            <p class="card-text">
+                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
+                            </p>
+                          </small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
 
-        <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src="{{ cell.url_img_gb }}" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para mostrar a altura igual, em ação.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-</div>
-
+    <div class="carousel-item">
+      <div class="d-flex justify-content-center" >
+          {% for cell1 in cell|slice:"4:7" %}
+          <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                  <div class="col-md-auto text-center">
+                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="{{cell1.url_img_gb}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
+                  </div>
+                  <div class="col-md-auto">
+                      <div class="card-body">
+                          <small>
+                            <p>
+                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
+                            </p>
+                          </small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
     </div>
     <div class="carousel-item">
-
-        <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
+        <div class="d-flex justify-content-center" >
+          {% for cell1 in cell|slice:"7:10" %}
+          <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                  <div class="col-md-auto text-center">
+                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="{{cell1.url_img_gb}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <small>
+                            <p class="card-text">
+                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
+                            </p>
+                          </small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
     </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para mostrar a altura igual, em ação.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-</div>
-
-    </div>
-    <div class="carousel-item">
-
-        <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para mostrar a altura igual, em ação.</p>
-      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
-    </div>
-  </div>
-</div>
-
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Anterior</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Próximo</span>
   </a>
 </div>
-{% endblock %}
 
-</body>
-</html>
+{% endblock %}

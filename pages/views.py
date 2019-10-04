@@ -35,7 +35,7 @@ def huawei_view(request, *args, **kwargs):
     return render(request, "huawei.html", context)
 
 def sugestao_6ram(request, *args, **kwargs):
-    cell1 = Xiaomi.objects.filter(titlegb__contains="6GB RAM")
+    cell1 = Xiaomi.objects.filter(titlegb__contains="6gb ram")
 
     context = {'cell': cell1,
                }
@@ -44,9 +44,21 @@ def sugestao_6ram(request, *args, **kwargs):
 def xiaomi_196(request, pk):
   try:
     xiaomi = Xiaomi.objects.get(id=pk)
+    a = xiaomi.titlegb
+    if "6GB RAM" in a:
+        cell = Xiaomi.objects.filter(titlegb__contains="6gb ram")
+        return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+    elif "4GB RAM" in a:
+        cell = Xiaomi.objects.filter(titlegb__contains="4gb ram")
+        return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+    elif "8GB RAM" in a:
+        cell = Xiaomi.objects.filter(titlegb__contains="8gb ram")
+        return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+    else:
+        return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi})
   except Xiaomi.DoesNotExist:
-    raise Http404("Book does not exist")
-  return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi})
+    raise Http404("Celular não existente")
+
 
 
 

@@ -6,6 +6,12 @@ from decimal import Decimal
 
 class Xiaomi(models.Model):
     titlegb = models.CharField(max_length=512, default='')
+    ram = models.CharField(max_length=100, default='', blank=True)
+    rom = models.CharField(max_length=100, default='', blank=True)
+    pro = models.CharField(max_length=100, default='', blank=True)
+    cam = models.CharField(max_length=100, default='', blank=True)
+    tela = models.CharField(max_length=100, default='', blank=True)
+    bat = models.CharField(max_length=100, default='', blank=True)
     url_img_gb = models.URLField(max_length=2000, default='')
     namegb = models.CharField(max_length=50, default='', blank=True)
     pricegb = models.DecimalField(max_digits=15, decimal_places=2, default=Decimal(0))

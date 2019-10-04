@@ -25,8 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sugestao_6ram/', sugestao_6ram, name='sugestao_6ram'),
     path('huawei/', huawei_view, name='huawei'),
-
-
     path('xiaomi/', xiaomi_view, name='xiaomi'),
     path('xiaomi/xiaomi/<int:pk>', views.xiaomi_196, name='xiaomi_detail'),
     path('search/', SearchResultsView.as_view(), name='search_results'),

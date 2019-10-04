@@ -38,7 +38,7 @@
      <div class="col-sm-auto text-center ">
         <h3>{{ xiaomi.titlegb }}</h3><br>
       <ul class="list-group list-group-flush text-center">
-      <li class="list-group-item"><h5><span class="iconworks" data-icon="&#41;"></span> 6GB RAM <b>|</b> <span class="iconworks" data-icon="&#61;"></span> 128GB ROM <b>|</b> <span class="iconworks" data-icon="&#174;"></span> 6.3" <b>|</b> <span class="iconworks" data-icon="&#46;"></span> 4000mAh <br> <span class="iconworks" data-icon="&#43;"></span> 48.0MP + 8.0MP + 2.0MP + 2.0MP Câmeras traseiras <br><span class="iconworks" data-icon="&#106;"></span> Qualcomm Snapdragon 665 Octa Core 2.0GHz</h5></li>
+      <li class="list-group-item"><h5><span class="iconworks" data-icon="&#41;"></span> {{ xiaomi.ram }} <b>|</b> <span class="iconworks" data-icon="&#61;"></span>{{xiaomi.rom}}<b>|</b> <span class="iconworks" data-icon="&#174;"></span>{{xiaomi.tela}}<b>|</b> <span class="iconworks" data-icon="&#46;"></span>{{xiaomi.bat}}<br> <span class="iconworks" data-icon="&#43;"></span>{{xiaomi.tela}}<br><span class="iconworks" data-icon="&#106;"></span>{{xiaomi.pro}}</h5></li>
 
       <li class="list-group-item"><h4><b>Melhor Preço $ {{ xiaomi.best_price }} R$ {{ xiaomi.best_price_brl }} </b><a href="{{ xiaomi.best_url }}" ><button class="btn btn-light"> <img src="{{ xiaomi.best_name }}" width="100" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h4></li>
       <li class="list-group-item"><h5> <span class="iconworks" data-icon="&#39;"></span> Lista das Lojas pesquisadas <span class="iconworks" data-icon="&#93;"></span></h5></li>
@@ -60,5 +60,11 @@
     </div>
 </div>
 
+</div>
+<div class="container">
+    {% if cell %}
+     {% include "sugestao_6ram.html" %}
+    {% endif %}
+</div>
 
   {% endblock %}
