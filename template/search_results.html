@@ -11,9 +11,9 @@
  {% for cell1 in object_list %}
   <div class="col-sm-auto">
   <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
-  <img src="{{ cell1.url_img_gb }}" class="card-img rounded mx-auto d-block" alt="...">
+  <img src="{{ cell1.url_img }}" class="card-img rounded mx-auto d-block" alt="...">
   <div class="card-body text-center">
-    <h5 class="card-title">{{ cell1.titlegb }}</h5>
+    <h5 class="card-title">{{ cell1.title }}</h5>
     <p class="card-text"><h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5></p>
   </div>
   <ul class="list-group list-group-flush text-center">
@@ -36,7 +36,10 @@
 </div>
 </div>
   {% empty %}
-    <p>Não achamos nada ou tavez você pode mudar alguma coisa na pesquisa.</p>
+  <div class="col-sm-auto">
+  <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
+  <h4 class="text-center text-danger font-alt" ><b> Não achamos nada. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
+  </div>
   {% endfor %}
 </div>
 

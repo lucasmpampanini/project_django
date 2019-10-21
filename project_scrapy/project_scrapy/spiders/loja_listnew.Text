@@ -1,0 +1,103 @@
+import scrapy
+from project_scrapy.items import Loja_listItem
+
+class Huawei_Gb_ljSpider(scrapy.Spider):
+    name = "huawei_gb_lj"
+    allowed_domains = ["gearbest.com"]
+    start_urls = ['https://www.gearbest.com/cell-phones-c_11293/?odr=new&page_size=120&brand=huawei']
+
+    def parse(self, response):
+        title_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a/@title').extract()
+        url_img_list = response.xpath('//ul[@class="clearfix js_seachResultList"]//li//a//img/@data-lazy').extract()
+        price_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p/@data-currency').extract()
+        url_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a[@class="gbGoodsItem_title   "]//@href').extract()
+        i = 0
+
+        for url in url_list:
+            item = Loja_listItem()
+            item['title'] = title_list[i]
+            item['url_img'] = url_img_list[i]
+            item['store'] = response.xpath('//img[@class="footerLogo_img"]/@alt').extract()[0]
+            item['price'] = format_float(price_list[i])
+            item['url'] = url
+            if i != len(title_list):
+                i = i + 1
+            yield item
+
+class Xiaomi_Gb_ljSpider(scrapy.Spider):
+    name = "xiaomi_gb_lj"
+    allowed_domains = ["gearbest.com"]
+    start_urls = ['https://www.gearbest.com/cell-phones-c_11293/?page_size=120&brand=xiaomi&odr=new']
+
+    def parse(self, response):
+        title_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a/@title').extract()
+        url_img_list = response.xpath('//ul[@class="clearfix js_seachResultList"]//li//a//img/@data-lazy').extract()
+        price_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p/@data-currency').extract()
+        url_list = response.xpath('//div[@class="gbGoodsItem_outBox"]//p//a[@class="gbGoodsItem_title   "]//@href').extract()
+        i = 0
+
+        for url in url_list:
+            item = Loja_listItem()
+            item['title'] = title_list[i]
+            item['url_img'] = url_img_list[i]
+            item['store'] = response.xpath('//img[@class="footerLogo_img"]/@alt').extract()[0]
+            item['price'] = format_float(price_list[i])
+            item['url'] = url
+            if i != len(title_list):
+                i = i + 1
+            yield item
+
+class Xiaomi_Bg_ljSpider(scrapy.Spider):
+    name = "xiaomi_bg_lj"
+    allowed_domains = ["banggood.com"]
+    #start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567.html?brand=520']
+    #start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567-0-1-1-36-0_page2.html?brand=520']
+    #start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567-0-1-1-36-0_page3.html?brand=520']
+    start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567-0-1-1-36-0_page4.html?brand=520']
+
+    def parse(self, response):
+        title_list = response.xpath('//a[@data-point-id="18206083330"]/@title').extract()
+        url_img_list = response.xpath('//img[@class="bg_lazy"]/@src').extract()
+        price_list = response.xpath('//span[@class="price wh_cn"]/@oriattrmin').extract()
+        url_list = response.xpath('//a[@data-point-id="18206083330"]/@href').extract()
+        i = 0
+
+        for url in url_list:
+            item = Loja_listItem()
+            item['title'] = title_list[i]
+            item['store'] = response.xpath('//img[@class="logo1"]/@alt').extract()[0]
+            item['url_img'] = url_img_list[i]
+            item['price'] = format_float(price_list[i])
+            item['url'] = url
+            if i != len(title_list):
+                i = i + 1
+
+            yield item
+
+class Huawei_Bg_ljSpider(scrapy.Spider):
+    name = "huawei_bg_lj"
+    allowed_domains = ["banggood.com"]
+    #start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567-0-1-2-36-0_page1.html?brand=422']
+    start_urls = ['https://www.banggood.com/Wholesale-Smartphones-c-1567-0-1-2-36-0_page2.html?brand=422']
+
+    def parse(self, response):
+        title_list = response.xpath('//a[@data-point-id="18206083330"]/@title').extract()
+        url_img_list = response.xpath('//img[@class="bg_lazy"]/@src').extract()
+        price_list = response.xpath('//span[@class="price wh_cn"]/@oriattrmin').extract()
+        url_list = response.xpath('//a[@data-point-id="18206083330"]/@href').extract()
+        i = 0
+
+        for url in url_list:
+            item = Loja_listItem()
+            item['title'] = title_list[i]
+            item['store'] = response.xpath('//img[@class="logo1"]/@alt').extract()[0]
+            item['url_img'] = url_img_list[i]
+            item['price'] = format_float(price_list[i])
+            item['url'] = url
+            if i != len(title_list):
+                i = i + 1
+
+            yield item
+
+def format_float(my_value):
+    return '{:,.2f}'.format(float(my_value))

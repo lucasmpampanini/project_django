@@ -6,7 +6,8 @@
  {% include "navbar.html" %}
 
 <div class="card text-white">
-  <img src="{% static 'img/xiaomi.jpg' %}" class="card-img-home" alt="...">
+ <img src="{% static 'img/huaweip30.jpeg' %}" class="card-img-home" >
+
   <div class="card-img-overlay h-100 d-flex flex-column justify-content-center">
     <div class="container font-alt">
         <h1 class="card-title text-center d-none d-sm-block "><span class="iconworks" data-icon="&#92;"></span>Comparativo de Sites Chineses</h1>
@@ -16,20 +17,150 @@
             <span class="iconworks" data-icon="&#75;"></span>
         </button>
       </form>
-  </div>
     </div>
+  </div>
+</div>
+
+<div class="container text-center font-alt">
+    <h4>
+      {% if ram is not None %}
+      Memória RAM: <b>{{ram}}   </b>
+      {% endif %}
+      {% if rom is not None %}
+      Memória Interna: <b>{{rom}}   </b>
+      {% endif %}
+      {% if brand is not None %}
+      Marca: <b>{{brand|capfirst}}   </b>
+      {% endif %}
+    </h4>
 </div>
 <div class="container font-alt">
+  <div class="row align-items-start">
+<div class="col=auto">
+<div class="card">
+<form method="GET" action="/">
+  <div class="card-header">
+    <h4><span class="iconworks" data-icon="&#107;"></span><b> Filtros</b></h4>
+  </div>
+    <div class="card-header">
+    <b>Memória RAM</b>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="ram2" name="ram" value=" 2GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram2">2GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram3" name="ram" value=" 3GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram3">3GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram4" name="ram" value=" 4GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram4">4GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram6" name="ram" value=" 6GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram6">6GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram8" name="ram" value=" 8GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram8">8GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram10" name="ram" value=" 10GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram10">10GB RAM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="ram12" name="ram" value=" 12GB " class="custom-control-input">
+  <label class="custom-control-label" for="ram12">12GB RAM</label>
+  </div>
+    </li>
+  </ul>
+    <div class="card-header">
+    <b>Memória Interna</b>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom16" name="rom" value=" 16GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom16">16GB ROM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom32" name="rom" value=" 32GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom32">32GB ROM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom64" name="rom" value=" 64GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom64">64GB ROM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom128" name="rom" value=" 128GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom128">128GB ROM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom256" name="rom" value=" 256GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom256">256GB ROM</label>
+  </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-radio">
+  <input type="radio" id="rom512" name="rom" value=" 512GB " class="custom-control-input">
+  <label class="custom-control-label" for="rom512">512GB ROM</label>
+  </div>
+    </li>
+  </ul>
+    <div class="card-header">
+    <b>Marcas</b>
+  </div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="custom-control custom-radio ">
+  <input type="radio" id="customRadio3" name="brand" value="xiaomi" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio3">Xiaomi</label>
+  </div>
+    </li>
+   <li class="list-group-item">
+       <div class="custom-control custom-radio ">
+  <input type="radio" id="customRadio4" name="brand" value="huawei" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio4"  >Huawei</label>
+  </div>
+   </li>
+      <li class="list-group-item">
+      <button type="submit" class="btn btn-outline-danger">Aplicar</button>
+      </li>
+    </ul>
+  </form>
+</div>
+</div>
 
-<div class="row justify-content-md-center">
-
-
-  {% for cell1 in cell %}
-  <div class="col-sm-auto">
+    <div class="col row align-items-start">
+{% for cell1 in cell %}
+    <div class="col">
   <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
-  <img src="{{ cell1.url_img_gb }}" class="card-img rounded mx-auto d-block" alt="...">
+  <img src="{{ cell1.url_img }}" class="card-img rounded mx-auto d-block" alt="...">
   <div class="card-body text-center">
-    <h5 class="card-title">{{ cell1.titlegb }}</h5>
+    <h5 class="card-title">{{ cell1.title }}</h5>
     <p class="card-text"><h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5></p>
   </div>
   <ul class="list-group list-group-flush text-center">
@@ -51,6 +182,12 @@
   </div>
 </div>
 </div>
+  {% empty %}
+  <div class="col-sm-auto">
+  <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
+  <h4 class="text-center text-danger font-alt" ><b> Não achamos nada com os filtros selecionados. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
+  </div>
   {% endfor %}
-</div>
+  </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualize</title>
+</head>
+<body>
+<h2>Atualize</h2>
+{% if enable %}
+<input type="submit" name="upload" class="btn btn-primary" value="Upload" />
+
+{% else %}
+<input type="submit" name="upload" class="btn btn-primary" value="Upload" disabled/>
+
+{% endif %}
+</body>
+</html>

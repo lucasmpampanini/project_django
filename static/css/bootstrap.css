@@ -4659,7 +4659,7 @@ input[type="button"].btn-block {
   border-radius: calc(0.25rem - 1px);
 }
 .card-img-home {
-  width: 100%;
+  width: 50%;
   border-radius: calc(0.25rem - 1px);
 }
 

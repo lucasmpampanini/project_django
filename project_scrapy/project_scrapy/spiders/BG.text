@@ -1,0 +1,23 @@
+import scrapy
+from project_scrapy.items import Celular_bgItem
+from celular.models import Celular
+
+def format_float(my_value):
+    return '{:,.2f}'.format(float(my_value))
+
+class Bg231Spider(scrapy.Spider):
+    name = "bg231"
+    allowed_domains = ["banggood.com"]
+    bg231 = Celular.objects.get(id=0)
+    start_urls = [bg231.urlbg]
+
+    def parse(self, response):
+        price = response.xpath('//meta[@itemprop="description"]/@content').extract()[0][8:14]
+        item = Celular_bgItem()
+        item['bg_id'] = 231
+        item['titlebg'] = response.xpath('//img[@id="landingImage"]/@title').extract()[0]
+        item['namebg'] = response.xpath('//img[@alt="Banggood"]/@alt').extract()[0]
+        item['url_img_bg'] = response.xpath('//img[@id="landingImage"]/@src').extract()[0]
+        item['pricebg'] = format_float(price)
+        item['urlbg'] = response.url
+        return item

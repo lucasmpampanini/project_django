@@ -1,0 +1,226 @@
+import scrapy
+from project_scrapy.items import Loja_listItem
+
+def format_float(my_value):
+    return '{:,.2f}'.format(float(my_value))
+
+
+def list_url():
+
+    list_urlok = [
+        'https://www.dx.com/p/xiaomi-redmi-note-8-pro-653-inch-moible-phone-mtk-helio-g90t-64mp-quad-rear-cameras-4500mah-battery-eu-plug-2710253',
+        'https://www.dx.com/p/global-rom-xiaomi-redmi-7-smartphone-with-4gb-ram-64gb-rom-octacore-12mp-dual-ai-camera-4000mah-4g-lte-phone-us-plug-2628525',
+        'https://www.dx.com/p/xiaomi-mi-9t-redmi-k20-6gb-64gb-global-version-octacore-smartphone-48mp-triple-rear-camera-popup-front-camera-eu-plug-2628194',
+        'https://www.dx.com/p/new-original-xiaomi-redmi-note-7-pro-6gb-ram-128gb-rom-mobile-phone-snapdragon-675-octa-core-63-inch-48mp-dual-cameras-4000mah-2626364',
+        'https://www.dx.com/p/xiaomi-cc9-639-inch-smart-phone-octa-core-snapdragon-710-48mp-camera-us-plug-2626343',
+        'https://www.dx.com/p/global-rom-xiaomi-redmi-note-7-6gb-ram-64gb-rom-mobile-phone-snapdragon-660-octa-core-63-inch-48mp-rear-cam-us-plug-2625732',
+        'https://www.dx.com/p/xiaomi-mi-9-se-4g-60-inch-android-90-mobile-phone-6gb-ram-64gb-rom-200mp-front-camera-black-2614773',
+        'https://www.dx.com/p/xiaomi-mi-9-6gb-ram-128gb-rom-64-inch-android-90-mobile-phone-with-6gb-ram-160mp-480mp-120mp-rear-camerablack-2614599',
+        'https://www.dx.com/p/global-version-xiaomi-redmi-note-7-4gb-64gb-smartphone-snapdragon-660-4000mah-2340-x-1080-48mp-dual-camera-cellphone-2612688',
+        'https://www.dx.com/p/original-global-version-xiaomi-redmi-6a-6-a-2gb-32gb-smartphone-545-inch-full-screen-a22-13mp-camera-ai-face-unlock-2612687',
+        'https://www.dx.com/p/chinese-version-xiaomi-mi-mix-3-4g-phablet-8gb-ram-256gb-rom-240mp--20mp-rear-camera-fingerprint-sensor-cellphone-black-2092192',
+        'https://www.dx.com/p/xiaomi-mi-max-3-4g-phablet-with-4gb-ram-64gb-rom-12-0mp-5-0mp-rear-camera-fingerprint-black-2093768',
+        'https://www.dx.com/p/xiaomi-mi-max-3-4g-phablet-with-4gb-ram-64gb-rom-12-0mp-5-0mp-rear-camera-fingerprint-sensor-2093447',
+        'https://www.dx.com/p/xiaomi-redmi-note-3-55-2600514',
+        'https://www.dx.com/p/xiaomi-redmi-note-3-55-2600515',
+        'https://www.dx.com/p/xiaomi-4c-android-51-hexacore-phone-w-2gb-ram-16gb-rom--2600418',
+        'https://www.dx.com/p/xiaomi-4c-android-51-hexacore-phone-w-3gb-ram-32gb-rom--2600419',
+        'https://www.dx.com/p/xiaomi-redmi-note2-android-50-phone-w-2gb-ram-16gb-rom-dark-grey-2600411',
+        'https://www.dx.com/p/xiaomi-redmi-3s-android-51-4g-phone-w-2gb-ram-16gb-rom--2600294',
+        'https://www.dx.com/p/xiaomi-mi-5s-plus-57ampquot-dual-sim-phone-w-6gb-ram-128gb-rom-2600251',
+        'https://www.dx.com/p/xiaomi-mi-5s-plus-57ampquot-dual-sim-phone-w-4gb-ram-64gb-rom--2600250',
+        'https://www.dx.com/p/xiaomi-redmi-3-high-version-phone-w-2gb-ram-16gb-rom-2600237',
+        'https://www.dx.com/p/xiaomi-mi-mix-2s-snapdragon-845-octa-core-599-full-screen-display128gb-rom-4g-mobile-phone-black-2600178',
+        'https://www.dx.com/p/xiaomi-max-snapdragon-652-octacore-phone-w-3gb-ram-64gb-rom-silver-2600176',
+        'https://www.dx.com/p/xiaomi-max-snapdragon-652-octacore-phone-w-3gb-ram-64gb-rom-silver-2600177',
+        'https://www.dx.com/p/xiaomi-redmi-note-5-599-189-full-screen-octacore-smart-phone-dual-sim-w-4gb-ram-64gb-rom-2600161',
+        'https://www.dx.com/p/xiaomi-mi-mix-2-android-71-4g-lte-phone-w-6gb-ram-64gb-rom-full-screen-display-ceramics-body-black-2600121',
+        'https://www.dx.com/p/xiaomi-redmi-note-2-android-50-4g-phone-w-2gb-ram-32gb-rom-2600012',
+        'https://www.dx.com/p/xiaomi-redmi-note-2-android-50-4g-phone-w-2gb-ram-16gb-rom-2600013',
+        'https://www.dx.com/p/xiaomi-redmi-note-6-pro-6-26-inches-4g-phablet-mobile-phone-global-version-2090786',
+        'https://www.dx.com/p/xiaomi-black-shark-snapdragon-845-5-99-18-9-full-screen-octa-core-phone-with-8gb-ram-128gb-rom-black-2087030',
+        'https://www.dx.com/p/xiaomi-black-shark-snapdragon-845-5-99-18-9-full-screen-octa-core-phone-with-6gb-ram-64gb-rom-black-2087009',
+        'https://www.dx.com/p/xiaomi-mi-8-android-phone-with-6gb-ram-64gb-rom-white-2074737',
+        'https://www.dx.com/p/xiaomi-mi-8-android-phone-with-6gb-ram-128gb-rom-gold-2077881',
+        'https://www.dx.com/p/xiaomi-a2-lite-android-phone-with-4gb-ram-64gb-rom-gold-2057514',
+        'https://www.dx.com/p/xiaomi-a2-android-phone-with-4gb-ram-32gb-rom-gold-2057512',
+        'https://www.dx.com/p/xiaomi-a2-android-phone-with-4gb-ram-64gb-rom-gold-2057508',
+        'https://www.dx.com/p/xiaomi-redmi-6a-android-phone-with-2gb-ram-32gb-rom-gray-2057382',
+        'https://www.dx.com/p/xiaomi-mi-mix-2-5-99-android-7-1-4g-lte-phone-w-8gb-ram-128gb-rom-full-screen-display-ceramics-body-white-2043442',
+        'https://www.dx.com/p/xiaomi-mi-note-3-5-5-fingerprint-high-version-6gb-ram-128gb-rom-mobile-phone-snapdragon-660-octa-core-black-2043445'
+    ]
+
+    #return list_urlok[:10]
+    #return list_urlok[10:20]
+    #return list_urlok[20:30]
+    #return list_urlok[30:40]
+    #return list_urlok[40:50]
+    #return list_urlok[50:60]
+    #return list_urlok[60:70]
+    # return list_urlok[70:80]
+    # return list_urlok[80:90]
+    # return list_urlok[90:100]
+    # return list_urlok[100:110]
+    # return list_urlok[110:120]
+    # return list_urlok[120:130]
+
+class list_urlok0Spider(scrapy.Spider):
+    name = "dx0lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[0]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok1Spider(scrapy.Spider):
+    name = "dx1lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[1]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok2Spider(scrapy.Spider):
+    name = "dx2lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[2]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok3Spider(scrapy.Spider):
+    name = "dx3lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[3]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok4Spider(scrapy.Spider):
+    name = "dx4lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[4]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok5Spider(scrapy.Spider):
+    name = "dx5lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[5]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok6Spider(scrapy.Spider):
+    name = "dx6lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[6]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok7Spider(scrapy.Spider):
+    name = "dx7lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[7]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok8Spider(scrapy.Spider):
+    name = "dx8lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[8]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok9Spider(scrapy.Spider):
+    name = "dx9lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[9]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['store'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+

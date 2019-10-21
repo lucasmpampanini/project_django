@@ -1,0 +1,226 @@
+import scrapy
+from project_scrapy.items import Loja_dx_listItem
+
+def format_float(my_value):
+    return '{:,.2f}'.format(float(my_value))
+
+
+def list_url():
+
+    list_urlok = [
+        'https://www.dx.com/p/original-huawei-honor-7a-play-2gb-32gb-snapdragon-430-octa-core-57-inch-front-80mp-rear-130mp-720p-3000mah-2sim-us-plug-2618143',
+        'https://www.dx.com/p/huawei-mate-9-al00-phone-6gb-ram-128gb-rom-dual-sim-gold-2600509',
+        'https://www.dx.com/p/huawei-honor-7c-4g-599ampquot-mobile-phone-w-4gb-ram-32gb-rom-golden-2600348',
+        'https://www.dx.com/p/huawei-honor-7c-4g-599ampquot-mobile-phone-w-4gb-ram-64gb--2600347',
+        'https://www.dx.com/p/huawei-honor-v9-play-4g-52ampquot-mobile-phone-w-4gb-ram-32gb-rom--2600344',
+        'https://www.dx.com/p/huawei-honor-7x-4g-593-mobile-phone-w-4gb-ram-64gb-rom-2600319',
+        'https://www.dx.com/p/huawei-honor-7x-4g-593-mobile-phone-w-4gb-ram-128gb-rom-2600320',
+        'https://www.dx.com/p/huawei-honor-7a-4g-57ampquot-mobile-phone-w-2gb-ram-32gb-rom-2600279',
+        'https://www.dx.com/p/huawei-p20-58-smartphone-android-81-6g-ram-64g-rom-kirin-970-octa-core-2600105',
+        'https://www.dx.com/p/huawei-p20-pro-kirin-970-octacore-40mp-lte-61-smartphone-w-6gb-ram-128gb-rom-2600103',
+        'https://www.dx.com/p/huawei-p20-pro-kirin-970-octacore-40mp-lte-61-smartphone-w-6gb-ram-64gb-rom-2600104',
+        'https://www.dx.com/p/huawei-mate-10-pro-6ampquot-3d-curved-glass-octacore-4g-phone-w-4gb-ram-128gb-rom-2600097',
+        'https://www.dx.com/p/huawei-mate-10-pro-6ampquot-3d-curved-glass-octacore-4g-phone-w-4gb-ram-64gb-rom-2600096',
+        'https://www.dx.com/p/huawei-enjoy-8-599ampquot-4g-smart-phone-w-octa-core-3gb-ram-32gb-rom-2600052',
+        'https://www.dx.com/p/huawei-p20-pro-kirin-970-octa-core-40mp-lte-6-1-smartphone-w-6gb-ram-256gb-rom-blue-2040421',
+        'https://www.dx.com/p/huawei-p20-5-8-smartphone-android-8-1-high-version-6g-ram-128g-rom-kirin-970-octa-core-pink-2039987',
+        'https://www.dx.com/p/huawei-honor-v9-play-4g-5-2-mobile-phone-w-3gb-ram-32gb-rom-red-2030699',
+        'https://www.dx.com/p/huawei-maimang-6-5-9-phone-w-4gb-ram-64gb-rom-kirin-659-octa-core-black-2033799',
+        'https://www.dx.com/p/huawei-enjoy-8plus-5-93-high-version-4-cameras-octa-core-phone-w-4gb-ram-128gb-rom-black-2033655',
+        'https://www.dx.com/p/huawei-enjoy-8-5-99-4g-smart-phone-w-octa-core-4gb-ram-64gb-rom-blue-2033514',
+        'https://www.dx.com/p/huawei-honor-v10-5-99-kirin-970-octa-core-smartphone-w-6gb-ram-128gb-rom-golden-2033029',
+        'https://www.dx.com/p/huawei-mate10-5-9-3d-curved-glass-octa-core-4g-phone-w-4gb-ram-64gb-rom-golden-2031486',
+        'https://www.dx.com/p/huawei-honor-7c-4g-5-99-mobile-phone-w-3gb-ram-32gb-rom-golden-2029814',
+        'https://www.dx.com/p/huawei-honor-7a-4g-5-7-mobile-phone-w-3gb-ram-32gb-rom-blue-2029360',
+        'https://www.dx.com/p/huawei-mate-10-5-9-2560-x-1440-4000mah-nfc-fingerprint-mobile-phone-with-6gb-ram-128gb-rom-rose-golden-2029736',
+        'https://www.dx.com/p/huawei-honor-8-prd-al00-4g-5-2-phone-w-3gb-ram-32gb-rom-white-2029536',
+        'https://www.dx.com/p/huawei-honor-8-frd-al10-4g-5-2-phone-with-4gb-ram-64gb-rom-blue-2027659',
+        'https://www.dx.com/p/huawei-honor-7x-4g-5-93-mobile-phone-w-4gb-ram-32gb-rom-blue-2025615',
+        'https://www.dx.com/p/huawei-nova-youth-version-android7-0-dual-sim-octa-core-4g-5-2-phone-w-4gb-ram-64gb-rom-black-2094997',
+        'https://www.dx.com/p/huawei-nova-youth-version-android7-0-dual-sim-octa-core-4g-5-2-phone-w-4gb-ram-64gb-rom-blue-2056596',
+        'https://www.dx.com/p/huawei-p10-plus-al29-5-5-dual-sim-phone-6gb-ram-128gb-rom-golden-2055957',
+        'https://www.dx.com/p/huawei-honor-6x-5-5-4g-lte-mobile-phone-w-4gb-ram-64gb-rom-silver-2083452',
+        'https://www.dx.com/p/huawei-mate-9-l29-5-9-4g-dual-sim-phone-w-4-64gb-black-tw-ver-2055927',
+        'https://www.dx.com/p/huawei-mate-9-pro-al-10-5-5-dual-sim-phone-6gb-ram-128gb-rom-pink-2055601',
+        'https://www.dx.com/p/huawei-mate-9-pro-al-10-5-5-dual-sim-phone-6gb-ram-128gb-rom-golden-2055598',
+        'https://www.dx.com/p/huawei-mate-9-pro-al-00-5-5-dual-sim-phone-4gb-ram-64gb-rom-golden-2055594',
+        'https://www.dx.com/p/huawei-mate-8-nxt-l29-4gb-ram-64gb-rom-dual-sim-golden-2055075',
+        'https://www.dx.com/p/huawei-p8-lite-octa-core-android-5-0-4g-smartphone-w-5-0-wi-fi-2gb-ram-16gb-rom-13mp-white-2062422',
+        'https://www.dx.com/p/huawei-honor-7-plk-al10-octa-core-android-5-0-4g-phone-w-5-2-touch-id-3gb-64gb-rom-20mp-2095283',
+        'https://www.dx.com/p/huawei-p8-hisilicon-kirin-935-octa-core-4g-smart-phone-w-5-2-tft-3gb-ram-64gb-rom-13-0-8-0mp-2057620',
+    ]
+
+    #return list_urlok[:10]
+    #return list_urlok[10:20]
+    #return list_urlok[20:30]
+    return list_urlok[30:40]
+    #return list_urlok[40:50]
+    #return list_urlok[50:60]
+    #return list_urlok[60:70]
+    # return list_urlok[70:80]
+    # return list_urlok[80:90]
+    # return list_urlok[90:100]
+    # return list_urlok[100:110]
+    # return list_urlok[110:120]
+    # return list_urlok[120:130]
+
+class list_urlok0Spider(scrapy.Spider):
+    name = "dx0lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[0]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok1Spider(scrapy.Spider):
+    name = "dx1lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[1]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok2Spider(scrapy.Spider):
+    name = "dx2lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[2]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok3Spider(scrapy.Spider):
+    name = "dx3lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[3]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok4Spider(scrapy.Spider):
+    name = "dx4lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[4]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok5Spider(scrapy.Spider):
+    name = "dx5lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[5]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok6Spider(scrapy.Spider):
+    name = "dx6lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[6]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok7Spider(scrapy.Spider):
+    name = "dx7lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[7]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok8Spider(scrapy.Spider):
+    name = "dx8lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[8]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
+class list_urlok9Spider(scrapy.Spider):
+    name = "dx9lj"
+    allowed_domains = ["dx.com"]
+    start_urls = [list_url()[9]]
+
+
+    def parse(self, response):
+        price = response.xpath('//i[@class="low-sale-price"]//text()').extract()[0]
+        item = Loja_dx_listItem()
+        item['title'] = response.xpath('//div[@class="pinfo-wrap"]/h1/text()').extract()[0]
+        item['name'] = response.xpath('//div[@class="logo fl"]//a//img/@id').extract()[0]
+        item['price'] = format_float(price)
+        item['url'] = response.url
+
+        return item
+
