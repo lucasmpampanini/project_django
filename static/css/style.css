@@ -34,3 +34,23 @@
 .show > .btn-outline-light.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
 }
+
+.list-group-item-model {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #FF4040;
+  margin-bottom: -1px;
+
+}
+
+.btn-light-menu-model {
+  color: #FF4040;
+  background-color: #f8f9fa;
+
+}
+
+.btn-light-menu-model:hover {
+  color: #c82333;
+  background-color: #e2e6ea;

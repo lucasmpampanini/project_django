@@ -3,13 +3,28 @@
   {% block content %}
  {% include "navbar.html" %}
 
+<div class="container text-center font-alt">
+    <h4>
+      {% if ram is not None %}
+      Memória RAM: <b>{{ram}}   </b>
+      {% endif %}
+      {% if rom is not None %}
+      Memória Interna: <b>{{rom}}   </b>
+      {% endif %}
+      {% if brand is not None %}
+      Marca: <b>{{brand|capfirst}}   </b>
+      {% endif %}
+    </h4>
+</div>
 <div class="container font-alt">
+  <div class="row align-items-start">
+<div class="col=auto">
+{% include "menufilter.html" %}
+</div>
 
-<div class="row justify-content-md-center">
-
-
+    <div class="col row align-items-start">
  {% for cell1 in object_list %}
-  <div class="col-sm-auto">
+  <div class="col">
   <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
   <img src="{{ cell1.url_img }}" class="card-img rounded mx-auto d-block" alt="...">
   <div class="card-body text-center">
@@ -31,15 +46,22 @@
     {% endif %}
   </ul>
   <div class="card-body">
-    <a href="{% url 'xiaomi_detail' cell1.id %}" class="card-link">Veja mais detalhes</a>
+    <a href="{% url 'detail' cell1.slug cell1.id %}" class="card-link">Veja mais detalhes</a>
   </div>
 </div>
 </div>
   {% empty %}
-  <div class="col-sm-auto">
-  <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
-  <h4 class="text-center text-danger font-alt" ><b> Não achamos nada. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
-  </div>
+  {% if ram or rom or brand is not None %}
+      <div class="col-sm-auto">
+      <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
+      <h4 class="text-center text-danger font-alt" ><b> Não achamos nada com os filtros selecionados. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
+      </div>
+  {% else %}
+      <div class="col-sm-auto">
+      <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
+      <h4 class="text-center text-danger font-alt" ><b> Não achamos nada. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
+      </div>
+  {% endif %}
   {% endfor %}
 </div>
 

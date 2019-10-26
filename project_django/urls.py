@@ -28,6 +28,6 @@ urlpatterns = [
     path('huawei/', huawei_view, name='huawei'),
     path('xiaomi/', xiaomi_view, name='xiaomi'),
     path('atualize/', atualize_view, name='atualize'),
-    path('xiaomi/xiaomi/<int:pk>', views.xiaomi_196, name='xiaomi_detail'),
+    path('celular/<slug:slug>-<int:pk>', views.celular_details, name='detail'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
 ]

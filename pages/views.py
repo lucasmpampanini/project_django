@@ -5,8 +5,6 @@ from loja.models import Loja
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 
-def is_valid_queryparam(param):
-    return param != '' and param is not None
 
 def home_view(request, *args, **kwargs):
     cell1 = Celular.objects.all()
@@ -23,38 +21,59 @@ def home_view(request, *args, **kwargs):
     if rom is not None:
         cell1 = cell1.filter(title__contains=rom)
 
-
-    context = {'cell': cell1,
-                   'dolar': dolar,
-                   'teste': cell_price_min(request),
-                    'ram': ram,
-                    'rom': rom,
-                    'brand': brand,
-                   # 'rom': rom_select(request),
-                   # 'ram': ram_select(request),
-                   # 'atualizar': select(request),
-                   # 'some': some_select(request),
-                   # 'some': some2_select(request),
+    if brand or ram or rom is not None:
+        context = {'object_list': cell1,
+                   'ram': ram,
+                   'rom': rom,
+                   'brand': brand,
                    }
 
+        return render(request, "search_results.html", context)
 
-
+    context = {'cell': cell1,
+               'dolar': dolar,
+               'cell_price_min': cell_price_min(request),
+               # 'rom': rom_select(request),
+               # 'ram': ram_select(request),
+                #'pro_select': pro_select(request),
+               # 'model': model_xiaomi(request),
+               #'model': model_huawei(request),
+               #'limpatitlebg': limpatitlebg(request),
+               # 'some': some_select(request),
+               # 'some': some2_select(request),
+               #'bat': bat(request),
+               #'tela': tela(request),
+               #'teste': teste(request),
+               #'new_title': new_title(request),
+               }
     return render(request, "home.html", context)
 
 
-
-
-
 def xiaomi_view(request, *args, **kwargs):
-    cell1 = Celular.objects.filter(titlegb__contains="xiaomi")
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="xiaomi")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "xiaomi.html", context)
 
     context = {'cell': cell1,
                }
 
     return render(request, "xiaomi.html", context)
 
+
 def huawei_view(request, *args, **kwargs):
-    cell1 = Celular.objects.filter(titlegb__contains="huawei")
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="huawei")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "huawei.html", context)
 
     context = {'cell': cell1,
                }
@@ -69,21 +88,21 @@ def sugestao_6ram(request, *args, **kwargs):
     return render(request, "sugestao_6ram.html", context)
 
 
-def xiaomi_196(request, pk):
+def celular_details(request, pk, slug):
     try:
-        xiaomi = Celular.objects.get(id=pk)
-        a = xiaomi.ram
+        celulares = Celular.objects.get(id=pk)
+        a = celulares.ram
         if "6GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="6gb ram")
-            return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
         elif "4GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="4gb ram")
-            return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
         elif "8GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="8gb ram")
-            return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi, 'cell': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
         else:
-            return render(request, 'xiaomi/xiaomi_detail.html', {'xiaomi': xiaomi})
+            return render(request, 'details.html', {'cell': celulares})
     except Celular.DoesNotExist:
         raise Http404("Celular não existente")
 
@@ -132,7 +151,7 @@ def cell_price_min(request):
         else:
             cellok.url_img = cellok.url_img_gb
             cellok.save()
-        cellok.title = cellok.titlebg
+        # cellok.title = cellok.titlebg
         cellok.pricegb_brl = cellok.pricegb * cotacao.dolar_real
         cellok.pricebg_brl = cellok.pricebg * cotacao.dolar_real
         cellok.pricedx_brl = cellok.pricedx * cotacao.dolar_real
@@ -273,3 +292,159 @@ def some2_select(request):
                 cellok.namebg = celdel.namebg
                 cellok.save()
                 celdel.delete()
+
+
+def model_xiaomi(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if "xiaomi" in cell.brand.lower():
+            if not cell.model:
+                cellok = Celular.objects.get(id=cell.id)
+                cellok.model = cell.title.split()[1] + " " + cell.title.split()[2]
+                if cell.title.split()[3].lower() == "lite":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cell.title.split()[3].lower() == "pro":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cell.title.split()[3].lower() == "plus":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cell.title.split()[3].lower() == "se":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cellok.title.split()[2].lower() == "note":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cellok.title.split()[2].lower() == "mix":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cellok.title.split()[2].lower() == "max":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                if cellok.title.split()[4].lower() == "pro":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3] + " " + \
+                                   cell.title.split()[4]
+                cellok.save()
+
+
+def limpatitlebg(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if "banggood" in cell.store.lower():
+            cellok = Celular.objects.get(id=cell.id)
+            if cell.title.split()[1].lower() == "mi9" and cell.title.split()[2].lower() == "mi":
+                title = cell.title.split()
+                title.remove(title[1])
+                cellok.title = title
+                cellok.save()
+            if cell.title.split()[1].lower() == "mi8" and cell.title.split()[2].lower() == "mi":
+                title = cell.title.split()
+                title.remove(title[1])
+                cellok.title = title
+                cellok.save()
+    for cell in cell1:
+        if "banggood" in cell.store.lower():
+            cellok = Celular.objects.get(id=cell.id)
+            if "['" in cell.title:
+                cellok.title = cell.title.replace("[", "").replace("]", "").replace("'", "").replace(",", " ")
+                cellok.save()
+
+def model_huawei(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if "huawei" in cell.brand.lower():
+            cellok = Celular.objects.get(id=cell.id)
+            if not cell.model:
+                if cell.title.split()[3].lower() == "plus":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                elif cell.title.split()[3].lower() == "lite":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                elif cell.title.split()[3].lower() == "pro":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                elif cell.title.split()[3].lower() == "play":
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2] + " " + cell.title.split()[3]
+                else:
+                    cellok.model = cell.title.split()[1] + " " + cell.title.split()[2]
+                cellok.save()
+
+def pro_select(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if not cell.pro:
+            titleword = cell.title.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "snapdragon" == a.lower():
+                    cellok.pro = cell.title.split()[titleword.index(a)] + " " + cell.title.split()[titleword.index(a)+1] + " " + cell.title.split()[titleword.index(a)+2] + " " + cell.title.split()[titleword.index(a)+3]
+                    cellok.save()
+                if "kirin" == a.lower():
+                    cellok.pro = cell.title.split()[titleword.index(a)] + " " + cell.title.split()[titleword.index(a)+1] + " " + cell.title.split()[titleword.index(a)+2] + " " + cell.title.split()[titleword.index(a)+3]
+                    cellok.save()
+                if "helio" == a.lower():
+                    cellok.pro = "MediaTek " + cell.title.split()[titleword.index(a)] + " " + cell.title.split()[titleword.index(a)+1] + " " + cell.title.split()[titleword.index(a)+2] + " " + cell.title.split()[titleword.index(a)+3]
+                    cellok.save()
+
+def cam(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if not cell.cam:
+            titleword = cell.title.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "MP" in a:
+                    cellok.cam = cell.title.split()[titleword.index(a)]
+                    cellok.save()
+        if not cell.cam:
+            titleword = cell.titlegb.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "MP" in a:
+                    cellok.cam = cell.titlegb.split()[titleword.index(a)]
+                    cellok.save()
+
+def bat(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if not cell.bat:
+            titleword = cell.title.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "mAh" in a:
+                    cellok.bat = cell.title.split()[titleword.index(a)]
+                    cellok.save()
+        if not cell.bat:
+            titleword = cell.titlegb.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "mAh" in a:
+                    cellok.bat = cell.titlegb.split()[titleword.index(a)]
+                    cellok.save()
+
+def tela(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        if not cell.tela:
+            titleword = cell.title.split()
+            for a in titleword:
+                cellok = Celular.objects.get(id=cell.id)
+                if "inch" == a.lower():
+                    cellok.tela = cell.title.split()[titleword.index(a)-1] + '"'
+                    cellok.save()
+
+def new_title(request):
+    cell1 = Celular.objects.all()
+    for cell in cell1:
+        cellok = Celular.objects.get(id=cell.id)
+        if cell.brand:
+            newtitle = cell.brand.capitalize() + " "
+        if cell.model:
+            newtitle = newtitle + cell.model + " "
+#        if cell.tela:
+#           newtitle = newtitle + "Tela " + cell.tela + " "
+#        if cell.pro:
+#            newtitle = newtitle + cell.pro + " "
+        if cell.ram:
+            newtitle = newtitle + cell.ram + " "
+        if cell.rom:
+            newtitle = newtitle + cell.rom + " "
+#        if cell.bat:
+#            newtitle = newtitle + cell.bat + " "
+#        if cell.cam:
+#            newtitle = newtitle + "Camera " + cell.cam + " "
+
+        cellok.title = newtitle
+        cellok.save()

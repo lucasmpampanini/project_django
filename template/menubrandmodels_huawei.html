@@ -1,0 +1,76 @@
+{% block content %}
+{% load static %}
+
+
+<div class="card d-none d-lg-block d-xl-none d-none d-xl-block">
+<form method="GET" action="">
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item-model">
+        <div class="card-header">
+            <h5><b>Modelos</b></h5>
+        </div>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Enjoy" class="btn btn-light-menu-model btn-block">Enjoy</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Mate" class="btn btn-light-menu-model btn-block">Mate</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="P20" class="btn btn-light-menu-model btn-block">P20</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="P30" class="btn btn-light-menu-model btn-block">P30</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Nova" class="btn btn-light-menu-model btn-block">Nova</button>
+    </li>
+
+  </ul>
+
+  </form>
+</div>
+
+
+<!-- Menu para celular, Atualize os dois e com id diferentes -->
+
+
+<div class="dropdown d-block d-sm-none d-none d-sm-block d-md-none d-none d-md-block d-lg-none">
+  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filtros
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+  <div class="card">
+<form method="GET" action="">
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item-model">
+        <div class="card-header">
+            <h5><b>Modelos</b></h5>
+        </div>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Enjoy" class="btn btn-light-menu-model btn-block">Enjoy</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Mate" class="btn btn-light-menu-model btn-block">Mate</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="P20" class="btn btn-light-menu-model btn-block">P20</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="P30" class="btn btn-light-menu-model btn-block">P30</button>
+    </li>
+    <li class="list-group-item-model">
+      <button type="submit" name="model" value="Nova" class="btn btn-light-menu-model btn-block">Nova</button>
+    </li>
+
+  </ul>
+
+  </form>
+</div>
+
+</div>
+</div>
+
+{% endblock %}

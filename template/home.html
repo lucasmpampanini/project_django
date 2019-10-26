@@ -37,121 +37,7 @@
 <div class="container font-alt">
   <div class="row align-items-start">
 <div class="col=auto">
-<div class="card">
-<form method="GET" action="/">
-  <div class="card-header">
-    <h4><span class="iconworks" data-icon="&#107;"></span><b> Filtros</b></h4>
-  </div>
-    <div class="card-header">
-    <b>Memória RAM</b>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="ram2" name="ram" value=" 2GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram2">2GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram3" name="ram" value=" 3GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram3">3GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram4" name="ram" value=" 4GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram4">4GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram6" name="ram" value=" 6GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram6">6GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram8" name="ram" value=" 8GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram8">8GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram10" name="ram" value=" 10GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram10">10GB RAM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="ram12" name="ram" value=" 12GB " class="custom-control-input">
-  <label class="custom-control-label" for="ram12">12GB RAM</label>
-  </div>
-    </li>
-  </ul>
-    <div class="card-header">
-    <b>Memória Interna</b>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom16" name="rom" value=" 16GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom16">16GB ROM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom32" name="rom" value=" 32GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom32">32GB ROM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom64" name="rom" value=" 64GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom64">64GB ROM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom128" name="rom" value=" 128GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom128">128GB ROM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom256" name="rom" value=" 256GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom256">256GB ROM</label>
-  </div>
-    </li>
-    <li class="list-group-item">
-      <div class="custom-control custom-radio">
-  <input type="radio" id="rom512" name="rom" value=" 512GB " class="custom-control-input">
-  <label class="custom-control-label" for="rom512">512GB ROM</label>
-  </div>
-    </li>
-  </ul>
-    <div class="card-header">
-    <b>Marcas</b>
-  </div>
-    <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <div class="custom-control custom-radio ">
-  <input type="radio" id="customRadio3" name="brand" value="xiaomi" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio3">Xiaomi</label>
-  </div>
-    </li>
-   <li class="list-group-item">
-       <div class="custom-control custom-radio ">
-  <input type="radio" id="customRadio4" name="brand" value="huawei" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio4"  >Huawei</label>
-  </div>
-   </li>
-      <li class="list-group-item">
-      <button type="submit" class="btn btn-outline-danger">Aplicar</button>
-      </li>
-    </ul>
-  </form>
-</div>
+{% include "menufilter.html" %}
 </div>
 
     <div class="col row align-items-start">
@@ -178,15 +64,10 @@
     {% endif %}
   </ul>
   <div class="card-body">
-    <a href="{% url 'xiaomi_detail' cell1.id %}" class="card-link">Veja mais detalhes</a>
+    <a href="{% url 'detail' cell1.slug cell1.id %}" class="card-link">Veja mais detalhes</a>
   </div>
 </div>
 </div>
-  {% empty %}
-  <div class="col-sm-auto">
-  <h1 class="text-center text-danger"  ><span class="iconworks"  data-icon="&#249;"></span></h1>
-  <h4 class="text-center text-danger font-alt" ><b> Não achamos nada com os filtros selecionados. <br> Tavez poderia mudar alguma coisa na pesquisa. </b></h4>
-  </div>
   {% endfor %}
   </div>
     </div>

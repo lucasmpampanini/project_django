@@ -12,23 +12,18 @@
 
     <div class="carousel-item active">
       <div class="d-flex justify-content-center" >
-          {% for cell1 in cell|slice:":3" %}
-          <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                  <div class="col-md-auto text-center">
-                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
-                  </div>
-                  <div class="col-md-4">
-                      <img src="{{cell1.url_img}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                      <div class="card-body">
-                          <small>
-                            <p class="card-text">
-                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
-                            </p>
-                          </small>
-                      </div>
+          {% for cell in cell1|slice:":4" %}
+          <div class="card col=auto " >
+              <div class="row no-gutters row justify-content-md-center">
+                      <a href="{% url 'detail' cell.slug cell.id %}" >
+                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
+                      </a>
+                  <div class="col w-100">
+                     <p class="card-text">
+                       <h6 class="text-truncate">{{cell.title}}</h6>
+                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
+                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </button></a>
+                     </p>
                   </div>
               </div>
           </div>
@@ -38,23 +33,18 @@
 
     <div class="carousel-item">
       <div class="d-flex justify-content-center" >
-          {% for cell1 in cell|slice:"4:7" %}
-          <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                  <div class="col-md-auto text-center">
-                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
-                  </div>
-                  <div class="col-md-4">
-                      <img src="{{cell1.url_img}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
-                  </div>
-                  <div class="col-md-auto">
-                      <div class="card-body">
-                          <small>
-                            <p>
-                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
-                            </p>
-                          </small>
-                      </div>
+          {% for cell in cell1|slice:"4:8" %}
+         <div class="card" style="max-width: 540px;">
+              <div class="row no-gutters row justify-content-md-center">
+                      <a href="{% url 'detail' cell.slug cell.id %}" >
+                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
+                      </a>
+                  <div class="col w-100">
+                     <p class="card-text">
+                       <h6 class="text-truncate">{{cell.title}}</h6>
+                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
+                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto></button></a>
+                     </p>
                   </div>
               </div>
           </div>
@@ -63,23 +53,18 @@
     </div>
     <div class="carousel-item">
         <div class="d-flex justify-content-center" >
-          {% for cell1 in cell|slice:"7:10" %}
-          <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                  <div class="col-md-auto text-center">
-                      <h5 class="card-title col-12 text-truncate"><small><b>{{cell1.titlegb}}</b></small></h5>
-                  </div>
-                  <div class="col-md-4">
-                      <img src="{{cell1.url_img}}" class="card-img rounded mx-auto d-block" style="width: 90%;" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                      <div class="card-body">
-                          <small>
-                            <p class="card-text">
-                              <h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5>
-                            </p>
-                          </small>
-                      </div>
+          {% for cell in cell1|slice:"8:12" %}
+          <div class="card" style="max-width: 540px;">
+              <div class="row no-gutters row justify-content-md-center">
+                      <a href="{% url 'detail' cell.slug cell.id %}" >
+                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
+                      </a>
+                  <div class="col w-100">
+                     <p class="card-text">
+                       <h6 class="text-truncate">{{cell.title}}</h6>
+                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
+                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </button></a>
+                     </p>
                   </div>
               </div>
           </div>
@@ -87,14 +72,6 @@
       </div>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Próximo</span>
-  </a>
 </div>
 
 {% endblock %}
