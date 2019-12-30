@@ -1,7 +1,6 @@
 
 {% block content %}
 {% load static %}
-<h4 class="font-alt"> Sugestões pra você...</h4>
 <div id="carouselExampleIndicators" class="carousel slide d-none d-sm-block" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -12,20 +11,23 @@
 
     <div class="carousel-item active">
       <div class="d-flex justify-content-center" >
-          {% for cell in cell1|slice:":4" %}
-          <div class="card col=auto " >
-              <div class="row no-gutters row justify-content-md-center">
-                      <a href="{% url 'detail' cell.slug cell.id %}" >
-                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
-                      </a>
-                  <div class="col w-100">
-                     <p class="card-text">
-                       <h6 class="text-truncate">{{cell.title}}</h6>
-                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
-                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </button></a>
-                     </p>
-                  </div>
-              </div>
+          {% for cell in cell1|slice:":5" %}
+          <div class="col=auto text-center" >
+            <a href="{% url 'detail' cell.slug cell.id %}" >
+              <img src="{{cell.url_img}}" class="rounded-lg"  width=auto height="100">
+              <h6>{{cell.brand|title }}<br>{{cell.model|title}} </h6></a>
+              <p> 
+                <span class="iconworks" data-icon="&#41;"></span> {{ cell.ram }}
+                <br> 
+                <span class="iconworks" data-icon="&#61;"></span>{{cell.rom}}
+              </p>
+           
+            <p>${{ cell.best_price }} <br> R${{ cell.best_price_brl }}<br></p>
+
+            <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </butto>
+            </a>
+               
+            <br>
           </div>
           {% endfor %}
       </div>
@@ -33,40 +35,46 @@
 
     <div class="carousel-item">
       <div class="d-flex justify-content-center" >
-          {% for cell in cell1|slice:"4:8" %}
-         <div class="card" style="max-width: 540px;">
-              <div class="row no-gutters row justify-content-md-center">
-                      <a href="{% url 'detail' cell.slug cell.id %}" >
-                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
-                      </a>
-                  <div class="col w-100">
-                     <p class="card-text">
-                       <h6 class="text-truncate">{{cell.title}}</h6>
-                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
-                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto></button></a>
-                     </p>
-                  </div>
-              </div>
+          {% for cell in cell1|slice:"5:10" %}
+         <div class="col=auto text-center" >
+            <a href="{% url 'detail' cell.slug cell.id %}" >
+              <img src="{{cell.url_img}}" class="rounded-lg"  width=auto height="100">
+              <h6>{{cell.brand|title }}<br>{{cell.model|title}} </h6></a>
+              <p> 
+                <span class="iconworks" data-icon="&#41;"></span> {{ cell.ram }}
+                <br> 
+                <span class="iconworks" data-icon="&#61;"></span>{{cell.rom}}
+              </p>
+           
+            <p>${{ cell.best_price }} <br> R${{ cell.best_price_brl }}<br></p>
+
+            <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </butto>
+            </a>
+               
+            <br>
           </div>
           {% endfor %}
       </div>
     </div>
     <div class="carousel-item">
         <div class="d-flex justify-content-center" >
-          {% for cell in cell1|slice:"8:12" %}
-          <div class="card" style="max-width: 540px;">
-              <div class="row no-gutters row justify-content-md-center">
-                      <a href="{% url 'detail' cell.slug cell.id %}" >
-                      <img src="{{cell.url_img}}" class="card-img-top " style="width: 90%;" alt="...">
-                      </a>
-                  <div class="col w-100">
-                     <p class="card-text">
-                       <h6 class="text-truncate">{{cell.title}}</h6>
-                        ${{ cell.best_price }} R${{ cell.best_price_brl }}<br>
-                        <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </button></a>
-                     </p>
-                  </div>
-              </div>
+          {% for cell in cell1|slice:"10:15" %}
+          <div class="col=auto text-center" >
+            <a href="{% url 'detail' cell.slug cell.id %}" >
+              <img src="{{cell.url_img}}" class="rounded-lg"  width=auto height="100">
+              <h6>{{cell.brand|title }}<br>{{cell.model|title}} </h6></a>
+              <p> 
+                <span class="iconworks" data-icon="&#41;"></span> {{ cell.ram }}
+                <br> 
+                <span class="iconworks" data-icon="&#61;"></span>{{cell.rom}}
+              </p>
+           
+            <p>${{ cell.best_price }} <br> R${{ cell.best_price_brl }}<br></p>
+
+            <a href="{{ cell.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell.best_name }}" width="90" height=auto> </butto>
+            </a>
+               
+            <br>
           </div>
           {% endfor %}
       </div>

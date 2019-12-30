@@ -1,0 +1,67 @@
+
+  {% block content %}
+  {% load static %}
+
+
+ <canvas id="pricesChart" width="150" height="150"></canvas>
+
+
+ <script>
+   var ctx = document.getElementById("pricesChart");
+   var name = 'Últimos preços observados';
+   var best_price = JSON.parse('{{ cell.best_price|safe }}');
+   var pricegb = JSON.parse('{{ cell.pricegb|safe }}');
+   var pricegb_s3 = JSON.parse('{{ cell.pricegb_s3|safe }}');
+   var pricegb_s2 = JSON.parse('{{ cell.pricegb_s2|safe }}');
+   var pricegb_s1 = JSON.parse('{{ cell.pricegb_s1|safe }}');
+   var pricebg = JSON.parse('{{ cell.pricebg|safe }}');
+   var pricebg_s3 = JSON.parse('{{ cell.pricebg_s3|safe }}');
+   var pricebg_s2 = JSON.parse('{{ cell.pricebg_s2|safe }}');
+   var pricebg_s1 = JSON.parse('{{ cell.pricebg_s1|safe }}');
+   var pricedx = JSON.parse('{{ cell.pricedx|safe }}');
+   var pricedx_s3 = JSON.parse('{{ cell.pricedx_s3|safe }}');
+   var pricedx_s2 = JSON.parse('{{ cell.pricedx_s2|safe }}');
+   var pricedx_s1 = JSON.parse('{{ cell.pricedx_s1|safe }}');
+   var pricedg = JSON.parse('{{ cell.pricedg|safe }}');
+   var pricedg_s3 = JSON.parse('{{ cell.pricedg_s3|safe }}');
+   var pricedg_s2 = JSON.parse('{{ cell.pricedg_s2|safe }}');
+   var pricedg_s1 = JSON.parse('{{ cell.pricedg_s1|safe }}');
+  
+   new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['20/Set','14/Out','28/Out','07/Nov'],
+    datasets: [{ 
+        data: [pricebg_s1,pricebg_s2,pricebg_s3,pricebg],
+        label: "Baanggood",
+        borderColor: "#FF8C00",
+        fill: false
+      }, { 
+        data: [pricegb_s1,pricegb_s2,pricegb_s3, pricegb],
+        label: "GearBest",
+        borderColor: "#0000FF",
+        fill: false
+      }, { 
+        data: [pricedx_s1,pricedx_s2,pricedx_s3, pricedx],
+        label: "DealExtreme",
+        borderColor: "#FFFF00",
+        fill: false
+      }, { 
+        data: [pricedg_s1,pricedg_s2,pricedg_s3, pricedg],
+        label: "DoogeeStore",
+        borderColor: "#FFFF00",
+        fill: false
+      },
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: name
+    }
+  }
+});
+
+   </script>
+   
+{% endblock %}

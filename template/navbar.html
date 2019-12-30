@@ -1,7 +1,7 @@
 
 <!--
 <nav class="navbar navbar-expand-lg sticky-top ">
-         <div class="mx-auto  position-relative form-group">
+      <div class="mx-auto  position-relative form-group">
        <form action="{% url 'search_results' %}" method="get">
       <input class="form-control col-lg" type="search" placeholder="Pesquise aqui seu celular" aria-label="Search" name="q">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Prucurar</button>
@@ -12,8 +12,8 @@
 
 
 {% load static %}
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light font-alt">
-  <a class="navbar-brand" href="{% url 'home' %}"><span class="iconworks" data-icon="&#92;"></span>Home</a>
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light font-alt shadow-sm bg-white rounded">
+  <a class="navbar-brand" href="{% url 'home' %}"><span class="iconworks" data-icon="&#92;"></span>quaiscelulares</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,33 +26,33 @@
         <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Huawei" href="{% url 'huawei' %}"><img src="{% static 'svg/huaweilogo.svg' %}" width="30" height=auto></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Doogee" href="#"><img src="{% static 'img/doogeelogo.png' %}" width="70" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Doogee" href="{% url 'doogee' %}"><img src="{% static 'img/doogeelogo.png' %}" width="70" height=auto></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="OnePlus" href="#"><img src="{% static 'img/onepluslogo.png' %}" width="80" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="OnePlus" href="{% url 'oneplus' %}"><img src="{% static 'img/onepluslogo.png' %}" width="80" height=auto></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Bluboo" href="#"><img src="{% static 'img/bluboologo.png' %}" width="80" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Bluboo" href="{% url 'bluboo' %}"><img src="{% static 'img/bluboologo.png' %}" width="80" height=auto></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Oukitel" href="#"><img src="{% static 'img/oukitellogo.png' %}" width="80" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Oukitel" href="{% url 'oukitel' %}"><img src="{% static 'img/oukitellogo.png' %}" width="80" height=auto></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Lenovo" href="#"><img src="{% static 'img/lenovologo.png' %}" width="70" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Lenovo" href="{% url 'lenovo' %}"><img src="{% static 'img/lenovologo.png' %}" width="70" height=auto></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Meizu" href="#"><img src="{% static 'img/meizulogo.png' %}" width="70" height=auto></a>
+        <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Meizu" href="{% url 'meizu' %}"><img src="{% static 'img/meizulogo.png' %}" width="70" height=auto></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="iconworks" data-icon="&#94;"></span> Outras Marcas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Leagoo" href="#"><img src="{% static 'img/leagoologo.png' %}" width="80" height=auto></a>
-          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Asus" href="#"><img src="{% static 'img/asuslogo.png' %}" width="80" height=auto></a>
-          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Elephone" href="#"><img src="{% static 'img/elephonelogo.png' %}" width="55" height=auto></a>
-          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Umidigi" href="#"><img src="{% static 'img/umidigilogo.png' %}" width="80" height=auto></a>
-          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Cubot" href="#"><img src="{% static 'img/cubotlogo.png' %}" width="70" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Leagoo" href="{% url 'leagoo' %}"><img src="{% static 'img/leagoologo.png' %}" width="80" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Asus" href="{% url 'asus' %}"><img src="{% static 'img/asuslogo.png' %}" width="80" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Elephone" href="{% url 'elephone' %}"><img src="{% static 'img/elephonelogo.png' %}" width="55" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Umidigi" href="{% url 'umidigi' %}"><img src="{% static 'img/umidigilogo.png' %}" width="80" height=auto></a>
+          <a class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="Cubot" href="{% url 'cubot' %}"><img src="{% static 'img/cubotlogo.png' %}" width="70" height=auto></a>
 
         </div>
       </li>

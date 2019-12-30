@@ -25,10 +25,12 @@
     <div class="col row align-items-start">
  {% for cell1 in object_list %}
   <div class="col">
-  <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <a href="{% url 'detail' cell1.slug cell1.id %}" class="card-link">
   <img src="{{ cell1.url_img }}" class="card-img rounded mx-auto d-block" alt="...">
   <div class="card-body text-center">
     <h5 class="card-title">{{ cell1.title }}</h5>
+    </a>
     <p class="card-text"><h5>Melhor Preço<br>$ {{ cell1.best_price }}<br>R$ {{ cell1.best_price_brl }}<br><a href="{{ cell1.best_url }}" data-toggle="tooltip" data-placement="bottom" title="Clique para ir à loja" ><button class="btn btn-light"><img src="{{ cell1.best_name }}" width="90" height=auto> <span class="iconworks" data-icon="&#48;"></span></button></a></h5></p>
   </div>
   <ul class="list-group list-group-flush text-center">
@@ -45,9 +47,6 @@
       <li class="list-group-item">$ {{cell1.pricebg}} <b>|</b> R$ {{ cell1.pricebg_brl }} <a class="btn btn-light" href="{{cell1.urlbg}}"><img src="{{ cell1.namebg }}" width="70" height=auto><span class="iconworks" data-icon="&#48;"></span></a></li>
     {% endif %}
   </ul>
-  <div class="card-body">
-    <a href="{% url 'detail' cell1.slug cell1.id %}" class="card-link">Veja mais detalhes</a>
-  </div>
 </div>
 </div>
   {% empty %}

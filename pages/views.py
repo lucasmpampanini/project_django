@@ -12,6 +12,21 @@ def home_view(request, *args, **kwargs):
     brand = request.GET.get('brand')
     ram = request.GET.get('ram')
     rom = request.GET.get('rom')
+    temmelhortela = request.GET.get('temmelhortela')
+    cell_temmelhortela = cell1.filter(quaiscelulares__contains='tem melhor tela')
+    temmelhorcustobeneficio = request.GET.get('temmelhorcustobeneficio')
+    cell_temmelhorcustobeneficio = cell1.filter(quaiscelulares__contains='tem melhor custo beneficio')
+    temmelhorbateria = request.GET.get('temmelhorbateria')
+    cell_temmelhorbateria = cell1.filter(quaiscelulares__contains='tem melhor bateria')
+    temmelhorcameratraseira = request.GET.get('temmelhorcameratraseira')
+    cell_temmelhorcameratraseira = cell1.filter(quaiscelulares__contains='tem melhor camera traseira')
+    temmelhorcameraparaselfie = request.GET.get('temmelhorcameraparaselfie')
+    cell_temmelhorcameraparaselfie = cell1.filter(quaiscelulares__contains='tem melhor camera para selfie')
+    saomaisresistentes = request.GET.get('saomaisresistentes')
+    cell_saomaisresistentes = cell1.filter(quaiscelulares__contains='sao mais resistentes')
+    saomelhoresparajogo = request.GET.get('saomelhoresparajogo')
+    cell_saomelhoresparajogo = cell1.filter(quaiscelulares__contains='sao melhores para jogo')
+
     if brand is not None:
         cell1 = cell1.filter(title__contains=brand)
 
@@ -30,11 +45,76 @@ def home_view(request, *args, **kwargs):
 
         return render(request, "search_results.html", context)
 
-    context = {'cell': cell1,
+    if temmelhortela is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=temmelhortela)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if temmelhorcustobeneficio is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=temmelhorcustobeneficio)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if temmelhorbateria is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=temmelhorbateria)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if temmelhorcameratraseira is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=temmelhorcameratraseira)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if temmelhorcameraparaselfie is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=temmelhorcameraparaselfie)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if saomaisresistentes is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=saomaisresistentes)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+    if saomelhoresparajogo is not None:
+        cell1 = cell1.filter(quaiscelulares__contains=saomelhoresparajogo)
+        context = { 'object_list': cell1,
+
+        }
+
+        return render(request, "quaiscelulares_maiscelulares.html", context)
+
+
+    context = {'cell1': cell1,
+                #'cell2': cell2,
                'dolar': dolar,
                'cell_price_min': cell_price_min(request),
-               # 'rom': rom_select(request),
-               # 'ram': ram_select(request),
+               'celltemmelhortela': cell_temmelhortela,
+               'celltemmelhorcustobeneficio': cell_temmelhorcustobeneficio,
+               'celltemmelhorbateria': cell_temmelhorbateria,
+               'celltemmelhorcameratraseira': cell_temmelhorcameratraseira,
+               'celltemmelhorcameraparaselfie': cell_temmelhorcameraparaselfie,
+               'cellsaomaisresistentes': cell_saomaisresistentes,
+               'cellsaomelhoresparajogo': cell_saomelhoresparajogo,
+               #'rom': rom_select(request),
+               #'ram': ram_select(request),
                 #'pro_select': pro_select(request),
                # 'model': model_xiaomi(request),
                #'model': model_huawei(request),
@@ -79,6 +159,161 @@ def huawei_view(request, *args, **kwargs):
                }
     return render(request, "huawei.html", context)
 
+def doogee_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="doogee")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "doogee.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "doogee.html", context)
+
+
+def oneplus_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="oneplus")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "oneplus.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "oneplus.html", context)
+
+def bluboo_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="bluboo")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "bluboo.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "bluboo.html", context)
+
+def oukitel_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="oukitel")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "oukitel.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "oukitel.html", context)
+
+def lenovo_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="lenovo")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "lenovo.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "lenovo.html", context)
+
+def meizu_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="meizu")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "meizu.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "meizu.html", context)
+
+def leagoo_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="leagoo")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "leagoo.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "leagoo.html", context)
+
+def asus_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="asus")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "asus.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "asus.html", context)
+
+def elephone_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="elephone")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "elephone.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "elephone.html", context)
+
+def umidigi_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="umidigi")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "umidigi.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "umidigi.html", context)
+
+def cubot_view(request, *args, **kwargs):
+    cell1 = Celular.objects.all()
+    cell1 = cell1.filter(title__contains="cubot")
+    model = request.GET.get('model')
+    if model is not None:
+        cell1 = cell1.filter(title__contains=model)
+        context = {'cell': cell1,
+                   }
+        return render(request, "cubot.html", context)
+
+    context = {'cell': cell1,
+               }
+    return render(request, "cubot.html", context)
+
 
 def sugestao_6ram(request, *args, **kwargs):
     cell1 = Celular.objects.filter(titlegb__contains="6gb ram")
@@ -91,18 +326,22 @@ def sugestao_6ram(request, *args, **kwargs):
 def celular_details(request, pk, slug):
     try:
         celulares = Celular.objects.get(id=pk)
+        cell1 = Celular.objects.filter(title__contains="xiaomi")
+        best_price = [float(obj.best_price) for obj in cell1]
+        model = [obj.model for obj in cell1]
         a = celulares.ram
+
         if "6GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="6gb ram")
-            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell, 'best_price': best_price, 'model': model})
         elif "4GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="4gb ram")
-            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell, 'best_price': best_price, 'model': model})
         elif "8GB RAM" in a:
             cell = Celular.objects.filter(titlegb__contains="8gb ram")
-            return render(request, 'details.html', {'cell': celulares, 'cell1': cell})
+            return render(request, 'details.html', {'cell': celulares, 'cell1': cell, 'best_price': best_price, 'model': model})
         else:
-            return render(request, 'details.html', {'cell': celulares})
+            return render(request, 'details.html', {'cell': celulares, 'best_price': best_price, 'model': model})
     except Celular.DoesNotExist:
         raise Http404("Celular não existente")
 
@@ -111,13 +350,13 @@ def cell_price_min(request):
     cell1 = Celular.objects.all()
     cotacao = Dolar.objects.get(id=1)
     for cell in cell1:
-        list_price = [cell.pricegb, cell.pricebg, cell.pricedx, cell.pricein]
-        list_priceok = [cell.pricegb, cell.pricebg, cell.pricedx, cell.pricein]
-        list_url = [cell.urlgb, cell.urlbg, cell.urldx, cell.urlin]
-        list_urlok = [cell.urlgb, cell.urlbg, cell.urldx, cell.urlin]
-        list_name = [cell.namegb, cell.namebg, cell.namedx, cell.namein]
+        list_price = [cell.pricegb, cell.pricebg, cell.pricedx, cell.pricein, cell.pricedg]
+        list_priceok = [cell.pricegb, cell.pricebg, cell.pricedx, cell.pricein, cell.pricedg]
+        list_url = [cell.urlgb, cell.urlbg, cell.urldx, cell.urlin, cell.urldg]
+        list_urlok = [cell.urlgb, cell.urlbg, cell.urldx, cell.urlin, cell.urldg]
+        list_name = [cell.namegb, cell.namebg, cell.namedx, cell.namein, cell.namedg]
         cellok = Celular.objects.get(id=cell.id)
-        list_nameok = [cellok.namegb, cellok.namebg, cellok.namedx, cellok.namein]
+        list_nameok = [cellok.namegb, cellok.namebg, cellok.namedx, cellok.namein, cell.namedg]
 
         for b in list_price:
             if b == 0 or 0.00:
@@ -141,21 +380,24 @@ def cell_price_min(request):
                 cellok.namein = "/static/img/Lightintheboxlogo.png"
             if "dealextreme" in c:
                 cellok.namedx = "/static/img/dealextremelogo.png"
+            if "Doogee" in c:
+                cellok.namedg = "/static/img/doogeelogo.png"
             if not c.replace('"', '$'):
                 list_nameok.remove(c)
         name_min = list_priceok.index(min(list_priceok))
 
-        if not list_url[0].replace('"', '$'):
-            cellok.url_img = cellok.url_img_bg
-            cellok.save()
-        else:
-            cellok.url_img = cellok.url_img_gb
-            cellok.save()
-        # cellok.title = cellok.titlebg
+#        if cell.url_img_gb.replace('"', '$'):
+#            cellok.url_img = cellok.url_img_gb
+#            cellok.save()
+#        else:
+#            cellok.url_img = cellok.url_img_bg
+#            cellok.save()
+#         cellok.title = cellok.titlebg
         cellok.pricegb_brl = cellok.pricegb * cotacao.dolar_real
         cellok.pricebg_brl = cellok.pricebg * cotacao.dolar_real
         cellok.pricedx_brl = cellok.pricedx * cotacao.dolar_real
         cellok.pricein_brl = cellok.pricein * cotacao.dolar_real
+        cellok.pricedg_brl = cellok.pricedg * cotacao.dolar_real
         cellok.best_price_brl = cellok.best_price * cotacao.dolar_real
         cellok.best_price = price_min
         cellok.best_url = list_urlok[url_min]

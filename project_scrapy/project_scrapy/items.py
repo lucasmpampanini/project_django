@@ -44,6 +44,13 @@ class Celular_inItem(scrapy.Item):
     pricein = scrapy.Field()
     urlin = scrapy.Field()
 
+class Celular_dgItem(scrapy.Item):
+    dg_id = scrapy.Field()
+    titledg = scrapy.Field()
+    namedg = scrapy.Field()
+    pricedg = scrapy.Field()
+    urldg = scrapy.Field()
+
 class Loja_listItem(scrapy.Item):
     title = scrapy.Field()
     store = scrapy.Field()
